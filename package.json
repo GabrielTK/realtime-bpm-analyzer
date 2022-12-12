@@ -23,9 +23,11 @@
   "license": "MIT",
   "main": "./dist/index.js",
   "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "esbuild src/realtime-bpm-processor.ts --bundle --outfile=dist/realtime-bpm-processor.js && esbuild src/index.ts --bundle --outfile=dist/index.js",
     "build-esm": "esbuild src/index.ts --bundle --platform=neutral --outfile=dist/index.esm.js",
+    "build-types": "tsc -p tsconfig.typings.json",
     "coverage": "codecov",
     "doc": "rm -Rf ./public/api && typedoc ./src",
     "release": "standard-version",
@@ -34,6 +36,9 @@
     "release:major": "standard-version --release-as major",
     "test": "NODE_ENV=test ts-mocha -p tsconfig.json test/**/*.ts",
     "test:report": "c8 --reporter=html --reporter=text --reporter=lcov npm test"
+  },
+  "eslintConfig": {
+    "ignorePatterns": "dist/*"
   },
   "repository": {
     "type": "git",
